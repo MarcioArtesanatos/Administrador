@@ -1,15 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Metadata } from "next";
 import { collection, addDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../types/firebaseConfig";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
-export const metadata: Metadata = {
-  title: "Adicionar Produto",
-  description: "Adicionar Produto",
-};
 
 function ItemCadastro() {
   const [categoria, setCategoria] = useState("");
