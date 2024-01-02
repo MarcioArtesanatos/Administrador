@@ -1,3 +1,4 @@
+"use client"
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableOne from "@/components/Tables/TableOne";
 import TableThree from "@/components/Tables/TableThree";

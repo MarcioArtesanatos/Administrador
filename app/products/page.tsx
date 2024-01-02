@@ -1,14 +1,7 @@
 "use client"
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Image from "next/image";
-
-import { Metadata } from "next";
 import TableTwo from "@/components/Tables/TableTwo";
-export const metadata: Metadata = {
-  title: "Produtos",
-  description: "Produtos",
-  // other metadata
-};
 
 const Products = () => {
   return (
