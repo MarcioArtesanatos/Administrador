@@ -146,24 +146,27 @@ function ItemCadastro() {
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <form onSubmit={handleSubmit}>
               <div className="p-6.5">
-                <div className="mb-4.5 flex flex-row gap-6 xl:flex-row">
-                  <div className="w-full xl:w-1/2">
+                <div className="mb-4.5">
+                  <div className="mb-4.5">
                     <label className="mb-2.5 block text-black dark:text-white">
                       Categoria
                     </label>
 
-                    <input
-                      type="text"
-                      placeholder="Selecione a categoria"
+                    <select
+                      name="Categoria"
+                      id="Categoria"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={categoria}
                       onChange={handleCategoriaChange}
                       required
-                    />
+                    >
+                      <option value="Brinquedos">Brinquedos</option>
+                      <option value="Cozinha">Cozinha</option>
+                    </select>
                   </div>
 
                   {/* Produto */}
-                  <div className="w-full xl:w-1/2">
+                  <div>
                     <label className="mb-2.5 block text-black dark:text-white">
                       Produto
                     </label>
@@ -177,14 +180,14 @@ function ItemCadastro() {
                   </div>
                 </div>
 
-                <div className="p-6.5">
+                <div>
                   {/* Valor */}
                   <div className="mb-4.5">
                     <label className="mb-2.5 block text-black dark:text-white">
                       Valor
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Insira o Valor do Produto"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={valor}
@@ -197,13 +200,16 @@ function ItemCadastro() {
                     <label className="mb-2.5 block text-black dark:text-white">
                       Cores
                     </label>
-                    <input
-                      type="text"
-                      placeholder="Escolha a cor do produto"
+                    <select
+                      name="Categoria"
+                      id="Categoria"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={cores}
                       onChange={handleCoresChange}
-                    />
+                      required
+                    >
+                      <option value="Várias">Várias</option>
+                    </select>
                   </div>
 
                   {/* Quantidade */}
@@ -212,7 +218,7 @@ function ItemCadastro() {
                       Quantidade
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Qual a quantidade no estoque?"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={quantidade}
@@ -226,7 +232,7 @@ function ItemCadastro() {
                       Peso
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Qual o peso do produto?"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={peso}
@@ -240,7 +246,7 @@ function ItemCadastro() {
                       Largura
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Qual o peso do produto?"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={largura}
@@ -254,7 +260,7 @@ function ItemCadastro() {
                       Altura
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Qual a altura do produto?"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={altura}
@@ -268,7 +274,7 @@ function ItemCadastro() {
                       Comprimento
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Qual o comprimento do produto?"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={comprimento}
@@ -282,7 +288,7 @@ function ItemCadastro() {
                       Descrição Curta
                     </label>
                     <textarea
-                      rows={6}
+                      rows={4}
                       placeholder="Insira a descrição curta do produto"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={shortdescription}
@@ -296,7 +302,7 @@ function ItemCadastro() {
                       Descrição Completa
                     </label>
                     <textarea
-                      rows={6}
+                      rows={15}
                       placeholder="Insira a descrição completa do produto"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       value={descricao}
@@ -304,15 +310,14 @@ function ItemCadastro() {
                     ></textarea>
                   </div>
 
-                  <label className="form-label">Imagens:</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    multiple
-                    onChange={handleImagensChange}
-                  />
-                  <div className="form-text">
-                    Envie as imagens do seu produto
+                  <div className="mb-4.5">
+                    <label className="form-label">Imagens: &nbsp;</label>
+                    <input
+                      type="file"
+                      className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark py-3 px-2"
+                      multiple
+                      onChange={handleImagensChange}
+                    />
                   </div>
 
                   <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray">

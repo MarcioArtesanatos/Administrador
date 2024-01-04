@@ -1,26 +1,51 @@
 "use client";
+import { useState, useEffect } from "react";
 import React from "react";
-import ChartOne from "../Charts/ChartOne";
-import ChartThree from "../Charts/ChartThree";
-import ChartTwo from "../Charts/ChartTwo";
-import ChatCard from "../Chat/ChatCard";
-import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
-// import Map from "../Maps/TestMap";
-
-// without this the component renders on server and throws an error
-import dynamic from "next/dynamic";
 import MessageHome from "@/app/home/page";
-const MapOne = dynamic(() => import("../Maps/MapOne"), {
-  ssr: false,
-});
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
-const ECommerce: React.FC = () => {
+const firebaseConfig = {
+  apiKey: "AIzaSyAeIztP5qgjKlUYEWur2xuFpGhdVhqbbHs",
+  authDomain: "marcio-artesanatos.firebaseapp.com",
+  projectId: "marcio-artesanatos",
+  storageBucket: "marcio-artesanatos.appspot.com",
+  messagingSenderId: "949736169495",
+  appId: "1:949736169495:web:12d470b7fc84e52222fc52",
+};
+
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+const collectionReference = collection(firestore, "produtos");
+
+async function contarDocumentos() {
+  try {
+    const querySnapshot = await getDocs(collectionReference);
+    const quantidadeDocumentos = querySnapshot.size;
+    return quantidadeDocumentos.toString();
+  } catch (error) {
+    console.error("Erro ao obter dados do Firestore:", error);
+    return "0";
+  }
+}
+
+const ECommerce = () => {
+  const [totalDocumentos, setTotalDocumentos] = useState("0");
+
+  useEffect(() => {
+    contarDocumentos().then((total) => setTotalDocumentos(total.toString()));
+  }, []);
+
   return (
     <>
-
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <CardDataStats title="Visualizações do site" total="R$ 0" rate="0%" levelUp>
+        <CardDataStats
+          title="Visualizações do site"
+          total="R$ 0"
+          rate="0%"
+          levelUp
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -62,7 +87,13 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Produtos Cadastrados" total="0" rate="0%" levelUp>
+
+        <CardDataStats
+          title="Produtos Cadastrados"
+          total={totalDocumentos}
+          rate="0%"
+          levelUp
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -81,6 +112,7 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
+
         <CardDataStats title="Total de Usuários" total="0" rate="0%" levelDown>
           <svg
             className="fill-primary dark:fill-white"
@@ -108,14 +140,6 @@ const ECommerce: React.FC = () => {
 
       <div className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <MessageHome />
-        {/* <ChartOne />
-        <ChartTwo />
-        <ChartThree />
-        <MapOne />
-        <div className="col-span-12 xl:col-span-8">
-          <TableOne />
-        </div>
-        <ChatCard /> */}
       </div>
     </>
   );
